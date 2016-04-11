@@ -1,10 +1,16 @@
+var fs = require('fs')
 
-module.exports= 
-	function (err, list) { 
-	for(var i=0; i<list.length; i++){
-		if(pat.test(list[i])){
-			console.log(list[i]);
+module.exports= function(dirName, extStr, callBack){
+
+	fs.readdir(dirName,function(err, list) { 
+		if(err){
+			return callBack(err)
 		}
-	}; 
+		var ext= extStr;
+       var pat = RegExp('\\.' + ext + '$');
+
+		callBack(null,list);
+
+})
 
 }
